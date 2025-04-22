@@ -1,5 +1,5 @@
-# Use uma imagem oficial do PHP como base
-FROM php:8.1-fpm
+# Usar a imagem PHP 8.2
+FROM php:8.2-fpm
 
 # Instalar dependências
 RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git unzip
