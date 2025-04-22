@@ -17,6 +17,13 @@ COPY . .
 # Instalar o Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Instalar as extensões PHP necessárias
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    zlib1g-dev \
+    && docker-php-ext-install intl zip
+
+
 # Rodar o Composer para instalar dependências
 RUN composer install --no-dev
 
