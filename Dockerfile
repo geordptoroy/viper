@@ -21,6 +21,12 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 COPY . .
 
+# Etapa de instalação de dependências PHP
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
+
+
 # Instalar dependências do Laravel
 RUN composer install --no-dev --no-scripts --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip
 
