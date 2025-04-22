@@ -22,7 +22,8 @@ WORKDIR /var/www
 COPY . .
 
 # Instalar dependências do Laravel
-RUN composer install --no-dev --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip
+RUN composer install --no-dev --no-scripts --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip
+
 
 # Permissões e cache
 RUN chmod -R 775 storage bootstrap/cache
