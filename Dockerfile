@@ -1,7 +1,7 @@
-# Usando imagem oficial do PHP
-FROM php:8.1-fpm
+# Usando a imagem oficial PHP 8.2
+FROM php:8.2-fpm
 
-# Instalar dependências do sistema
+# Instalar dependências do sistema e extensões PHP necessárias
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     unzip \
+    libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install pdo pdo_mysql zip \
+    && docker-php-ext-install gd pdo pdo_mysql zip intl \
     && rm -rf /var/lib/apt/lists/*
 
 # Instalar o Composer
@@ -27,8 +27,8 @@ COPY . .
 # Instalar as dependências do Laravel
 RUN composer install --no-dev
 
-# Expor a porta 9000 para a aplicação
+# Expor a porta 9000 para o PHP-FPM
 EXPOSE 9000
 
-# Iniciar o servidor PHP
+# Iniciar o servidor PHP-FPM
 CMD ["php-fpm"]
