@@ -1,10 +1,11 @@
 # Usar a imagem PHP 8.2
 FROM php:8.2-fpm
 
-# Instalar dependências e extensões PHP necessárias
+# Instalar dependências e extensões PHP necessárias, incluindo libzip-dev
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     zlib1g-dev \
+    libzip-dev \
     && docker-php-ext-install intl zip
 
 # Instalar o Composer
