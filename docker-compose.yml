@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: dpg-d040nspr0fns73cn03f0-a.oregon-postgres.render.com
+      DB_PORT: 5432
+      DB_DATABASE: viper_ws5t
+      DB_USERNAME: viper_ws5t_user
+      DB_PASSWORD: ndmfBKHLvyqXk1LVdZS2PDA94VPHc0V9
+    volumes:
+      - .:/var/www
